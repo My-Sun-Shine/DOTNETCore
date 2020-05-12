@@ -39,22 +39,54 @@ namespace WebApplication1
 
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// <summary>
+        /// 中间件注册的顺序很重要，注册的顺序就是http经过的顺序
+        /// IApplicationBuilder在Program.cs中的CreateDefaultBuilder方法进行注册
+        /// </summary>
+        /// <param name="app"></param>
+        /// <param name="env"></param>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            /*
+             * 通过变量 ASPNETCORE_ENVIRONMENT 判断是否为开发环境，还是其他环境
+             * IsEnvironment(变量值)方法判断自定义的变量值
+             */
             if (env.IsDevelopment())
             {
+                //一、异常页中间件：开发环境抛异常的时候，转到一个显示错误信息的页面
                 app.UseDeveloperExceptionPage();
             }
 
+            //四、静态资源中间件：css，js，html
+            app.UseStaticFiles();
+
+            //app.UseHttpsRedirection();//将http请求转换为https请求
+            //app.UseAuthentication();//验证中间件，必须在端点中间件前面
+            
+            /*
+             * 二、路由中间件：检测已经注册的端点
+             * 端点：进来的http请求的url结尾的那部分，这部分会被中间件进行处理
+             */
             app.UseRouting();
 
+            /*
+             * 三、端点中间件
+             */
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
+                //1.表示端点为/的时候，返回
+                /*endpoints.MapGet("/", async context =>
                 {
                     await context.Response.WriteAsync("Hello World!");
-                });
+                });*/
+
+                //2.MVC的路由表模板
+                endpoints.MapControllerRoute(
+                    "default",
+                    "{controller=Home}/{action=Index}/{id?}");
+
+                //3.MVC在controller和action上使用注解的注册路由模板
+                //endpoints.MapControllers();
             });
         }
     }
