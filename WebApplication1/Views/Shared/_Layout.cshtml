@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @*开发环境*@
+    <environment include="Development">
+        @*导入不是压缩的文件*@
+        <link rel="stylesheet" asp-href-include="css/*" asp-href-exclude="css/all.min.css" />
+    </environment>
+
+    @*不是开发环境*@
+    <environment exclude="Development">
+        <link rel="stylesheet" asp-href-include="css/all.min.css" />
+    </environment>
+</head>
+<body>
+    <img src="~/images/datebox_arrow.png" asp-append-version="true" />
+    <h3>@ViewBag.Title</h3>
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>
