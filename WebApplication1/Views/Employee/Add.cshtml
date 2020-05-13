@@ -1,0 +1,38 @@
+﻿@using WebApplication1.Models
+@model Employee
+
+
+<form asp-action="Add">
+    <input type="hidden" asp-for="DepartmentId" />
+    <div class="row form-group">
+        <div class="col-md-2 offset-md-2">
+            <label asp-for="FirstName" class="control-label"></label>
+        </div>
+        <div class="col-md-6">
+            <input asp-for="FirstName" class="form-control" />
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-md-2 offset-md-2">
+            <label asp-for="LastName" class="control-label"></label>
+        </div>
+        <div class="col-md-6">
+            <input asp-for="LastName" class="form-control" />
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-md-2 offset-md-2">
+            <label asp-for="Gender" class="control-label"></label>
+        </div>
+        <div class="col-md-6">
+            @*下拉框，使用GetEnumSelectList获取枚举的元素*@
+            <select class="form-control" asp-for="Gender" asp-items="Html.GetEnumSelectList<Gender>()"></select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2 offset-md-2">
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
+    </div>
+</form>
+
