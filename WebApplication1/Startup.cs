@@ -57,7 +57,7 @@ namespace WebApplication1
                 app.UseDeveloperExceptionPage();
             }
 
-            //四、静态资源中间件：css，js，html
+            //四、静态资源中间件：css，js，html，只有十一该中间件，才能访问静态文件
             app.UseStaticFiles();
 
             //app.UseHttpsRedirection();//将http请求转换为https请求

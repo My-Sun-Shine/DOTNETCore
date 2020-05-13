@@ -28,3 +28,7 @@ if (env.IsDevelopment()){
 //先去找对应环境的Startup[环境名称]类，如果没有找到，接着可能会找Startup类，如果还没找到，则会报错
 webBuilder.UseStartup(typeof(Program));
 ```
+### 静态资源
+* JS文件、CSS文件、图片等
+* 存放在wwwroot文件中，这是一个特殊文件夹
+* 必须注册UseStaticFiles()中间件，才能使用静态资源
