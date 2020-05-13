@@ -4,4 +4,10 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ProjectExtensions><VisualStudio><UserProperties bundleconfig_1json__JsonSchema="http://json.schemastore.org/bundleconfig" /></VisualStudio></ProjectExtensions>
+
+  <ItemGroup>
+    <PackageReference Include="BuildBundlerMinifier" Version="3.2.447" />
+  </ItemGroup>
+
 </Project>

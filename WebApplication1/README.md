@@ -32,3 +32,35 @@ webBuilder.UseStartup(typeof(Program));
 * JS文件、CSS文件、图片等
 * 存放在wwwroot文件中，这是一个特殊文件夹
 * 必须注册UseStaticFiles()中间件，才能使用静态资源
+### 包管理
+* 服务器端(后端)：NuGet
+* 前端：NPM
+### 静态资源文件
+* 1、通过右击项目-->添加-->客户端库，选择unpkg，添加需要的库
+* 2、添加完成之后，项目中多出libman.json配置文件，以及在wwwroot下多出需要的库
+* 3、在wwwroot下添加自定义库
+* 4、通过右击项目-->添加-->新建项-->应用设置文件；命名为bundleconfig.json
+* 5、在bundleconfig.json中添加配置信息，即将site.css和bootstrap.css合并压缩为all.min.css；将bootstrap.css进行压缩
+```
+[
+  {
+    "outputFileName": "wwwroot/css/all.min.css",
+    "inputFiles": [
+      "wwwroot/css/site.css",
+      "wwwroot/lib/bootstrap/dist/css/bootstrap.css"
+    ]
+  },
+
+  {
+    "outputFileName": "wwwroot/css/bootstrap.css",
+    "inputFiles": [
+      "wwwroot/lib/bootstrap/dist/css/bootstrap.css"
+    ],
+    "minify": {
+      "enabled": true 
+    }
+  }
+]
+```
+* 6、通过NuGet添加BuildBundlerMinifier
+* 7、编译项目，则在wwwroot中就会根据配置文件bundleconfig.json生成文件
