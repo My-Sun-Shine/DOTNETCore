@@ -1,0 +1,13 @@
+﻿@model WebApplication1.Models.Department
+
+<tr>
+    <td>@Model.Name</td>
+    <td>@Model.Location</td>
+    <td>@Model.EmployeeCount</td>
+    <td>
+        @*asp-route-departmentId是asp-route-[参数名]；为Index页面传递参数*@
+        <a asp-action="Index" asp-controller="Employee" asp-route-departmentId="@Model.Id">
+            Employess
+        </a>
+    </td>
+</tr>
