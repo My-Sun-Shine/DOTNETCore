@@ -34,6 +34,9 @@ namespace WebApplication1
             services.AddSingleton<IClock, ChinaClock>();
             //HomeController使用IClock接口接收，解耦合
             //services.AddSingleton<IClock, UTCClock>();
+
+            services.AddSingleton<IDepartmentService, DepartmentService>();
+            services.AddSingleton<IEmployeeService, EmployeeService>();
             #endregion
 
 
