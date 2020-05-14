@@ -64,3 +64,12 @@ webBuilder.UseStartup(typeof(Program));
 ```
 * 6、通过NuGet添加BuildBundlerMinifier
 * 7、编译项目，则在wwwroot中就会根据配置文件bundleconfig.json生成文件
+### 配置信息
+* Key-Value键值对的形式
+* 可以放在内存里、JSON、XML、INI等文件或者系统环境变量
+* 配置信息与配置系统是解耦的、可以依赖注入
+### 配置信息来源
+* appsettings.josn以及下的appsettings.{Environment}.json
+* Secret Manager
+* 环境变量
+* 命令行参数

@@ -1,7 +1,20 @@
-﻿@model WebApplication1.Models.Department
+﻿@using WebApplication1
+@using WebApplication1.Models
+@using Microsoft.Extensions.Options
 
+@model Department
+@inject IOptions<WebApplication1Options> options
 <tr>
-    <td>@Model.Name</td>
+    @*如果人数大约配置中设置的人数，部门名称加粗*@
+    @if (Model.EmployeeCount > options.Value.BoldDepartmentEmployeeCountThreshold)
+    {
+        <td><strong>@Model.Name</strong></td>
+    }
+    else
+    {
+        <td>@Model.Name</td>
+    }
+
     <td>@Model.Location</td>
     <td>@Model.EmployeeCount</td>
     <td>

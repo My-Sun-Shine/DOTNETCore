@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using WebApplication1.Services;
@@ -13,6 +14,16 @@ namespace WebApplication1
 {
     public class Startup
     {
+        private readonly IConfiguration _configuration;
+
+        public Startup(IConfiguration configuration)
+        {
+            _configuration = configuration;
+            //获取单一自定义配置
+            //var config = _configuration["WebApplication1:BoldDepartmentEmployeeCountThreshold"];
+        }
+
+
         /// <summary>
         /// 在该方法中注册服务
         /// </summary>
@@ -38,6 +49,11 @@ namespace WebApplication1
             services.AddSingleton<IDepartmentService, DepartmentService>();
             services.AddSingleton<IEmployeeService, EmployeeService>();
             #endregion
+
+            #region 自定义配置
+            services.Configure<WebApplication1Options>(_configuration.GetSection("WebApplication1"));
+            #endregion
+
 
 
         }
