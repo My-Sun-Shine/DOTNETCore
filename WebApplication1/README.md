@@ -73,3 +73,7 @@ webBuilder.UseStartup(typeof(Program));
 * Secret Manager
 * 环境变量
 * 命令行参数
+### View Component
+* 为什么PartialView不行？因为无法添加业务逻辑
+* 如果在Controller里面写？无法到处复用
+* Child Action呢？开销太大，它也需要走完整个Controller的生命周期
